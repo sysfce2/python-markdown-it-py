@@ -1,6 +1,6 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1701164042652,
-  "repoUrl": "https://github.com/executablebooks/markdown-it-py",
+  "lastUpdate": 1771502811385,
+  "repoUrl": "https://github.com/sysfce2/python-markdown-it-py",
   "xAxis": "id",
   "oneChartGroups": [
     "packages",
@@ -25115,6 +25115,92 @@ window.BENCHMARK_DATA = {
             "range": "stddev: 0.0085617",
             "group": "packages",
             "extra": "mean: 710.77 msec\nrounds: 20"
+          }
+        ]
+      },
+      {
+        "cpu": {
+          "speed": "0.00",
+          "cores": 4,
+          "physicalCores": 2,
+          "processors": 1
+        },
+        "extra": {
+          "pythonVersion": "3.10.19"
+        },
+        "commit": {
+          "id": "89331476e44c150bc32e2597a5fae4cd15391167",
+          "message": "🔧 Add typing to Scanner (#382)\n\nChanges `state_inline.Scanner` into a `typing.NamedTuple` instead of a\n`collections.namedtuple`. They should be functionally equivalent except\nthat the former has typing for its members while the latter does not.",
+          "timestamp": "2026-02-18T09:15:50+01:00",
+          "url": "https://github.com/sysfce2/python-markdown-it-py/commit/89331476e44c150bc32e2597a5fae4cd15391167",
+          "distinct": true,
+          "tree_id": "a85c59c47df679126c281f4298bbd615f0e9b937"
+        },
+        "date": 1771502810716,
+        "benches": [
+          {
+            "name": "benchmarking/bench_packages.py::test_markdown_it_py",
+            "value": 7.903758940296972,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0038888",
+            "group": "packages",
+            "extra": "mean: 126.52 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_markdown_it_pyrs",
+            "value": 197.47306836817154,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000073520",
+            "group": "packages",
+            "extra": "mean: 5.0640 msec\nrounds: 124"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_mistune",
+            "value": 9.403700764747455,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0024187",
+            "group": "packages",
+            "extra": "mean: 106.34 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_commonmark_py",
+            "value": 3.021032949501632,
+            "unit": "iter/sec",
+            "range": "stddev: 0.013576",
+            "group": "packages",
+            "extra": "mean: 331.01 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_pymarkdown",
+            "value": 7.4251966936463,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0073141",
+            "group": "packages",
+            "extra": "mean: 134.68 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_pymarkdown_extra",
+            "value": 5.496097274500209,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0040609",
+            "group": "packages",
+            "extra": "mean: 181.95 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_mistletoe",
+            "value": 7.223971219901158,
+            "unit": "iter/sec",
+            "range": "stddev: 0.016208",
+            "group": "packages",
+            "extra": "mean: 138.43 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_panflute",
+            "value": 1.378847321620846,
+            "unit": "iter/sec",
+            "range": "stddev: 0.015564",
+            "group": "packages",
+            "extra": "mean: 725.24 msec\nrounds: 20"
           }
         ]
       }
