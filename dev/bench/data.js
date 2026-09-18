@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789044393254,
+  "lastUpdate": 1789734781905,
   "repoUrl": "https://github.com/sysfce2/python-markdown-it-py",
   "xAxis": "id",
   "oneChartGroups": [
@@ -25537,6 +25537,84 @@ window.BENCHMARK_DATA = {
             "range": "stddev: 0.0054995",
             "group": "packages",
             "extra": "mean: 506.28 msec\nrounds: 20"
+          }
+        ]
+      },
+      {
+        "cpu": {
+          "speed": "0.00",
+          "cores": 4,
+          "physicalCores": 2,
+          "processors": 1
+        },
+        "extra": {
+          "pythonVersion": "3.10.21"
+        },
+        "commit": {
+          "id": "6f586542653a56d2ee8549a0dccfaa6ba5ebe14a",
+          "message": "🐛 Use the CommonMark whitespace set, not the Python one (#433)\n\nSupersedes #418 by @Nexory, whose commit is preserved as the first\ncommit here (the fork does not allow maintainer edits, so it could not\nbe brought up to date in place).\n\n## Summary\n\n`str.strip()` and `str.split()` without arguments use `str.isspace()`,\nwhich treats U+001C, U+001D, U+001E, U+001F and U+0085 as whitespace.\nCommonMark and `String.prototype.trim` do not, so upstream markdown-it\nkeeps those characters. Ten call sites relied on the Python behaviour,\nwith two visible consequences (both measured against\nmarkdown-it@14.1.0):\n\n- `normalizeReference` folded distinct labels together, so `[a\\x85b]:\nurl` resolved a usage `[a b]` in Python and not in JavaScript.\n- The characters were dropped from paragraphs, headings, table cells and\nfence info strings.\n\nThis adds `MD_TRIM_CHARS` and `mdTrim()` to `common/utils` and uses them\nat those sites; the fence renderer splits the info string on the same\nset. `U+FEFF` is deliberately excluded, since `trim` removing it is the\nsame label-folding defect in the other direction. See #418 for the full\nrationale, including what was deliberately left unchanged\n(`validateLink`, the backticks edge rule).\n\n## Changes on top of #418\n\n- The per-call `re.sub(\"[\" + re.escape(MD_TRIM_CHARS) + \"]+\", ...)` in\n`normalizeReference` and `RendererHTML.fence` is hoisted to a\nmodule-level compiled `MD_TRIM_RE`.\n- Changelog entry added.\n\n## Validation\n\n- pre-commit (ruff, ruff format, mypy strict) clean.\n- Full suite: 1032 passed (the 15 new cases in\n`tests/test_port/test_whitespace.py` plus the existing 1017).\n- Differential render of 47,936 corpus inputs across 7 presets (HTML,\ninline HTML and token streams) is byte-identical to master; the corpus\ncontains none of the five affected characters, so the only behaviour\nchange is the one the new tests cover.\n- Local Sphinx build with `-W` and nitpicky passes (only the usual\negress-blocked stdlib intersphinx refs).\n\n---------\n\nCo-authored-by: Nexory <St4yl3r30@hotmail.de>",
+          "timestamp": "2026-09-17T13:35:53+02:00",
+          "url": "https://github.com/sysfce2/python-markdown-it-py/commit/6f586542653a56d2ee8549a0dccfaa6ba5ebe14a",
+          "distinct": true,
+          "tree_id": "9f2182e62ec9edb785f163314d37fe418ebe1fe7"
+        },
+        "date": 1789734781036,
+        "benches": [
+          {
+            "name": "benchmarking/bench_packages.py::test_markdown_it_py",
+            "value": 7.596466781507275,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0031236",
+            "group": "packages",
+            "extra": "mean: 131.64 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_markdown_it_pyrs",
+            "value": 196.291437517772,
+            "unit": "iter/sec",
+            "range": "stddev: 0.000036801",
+            "group": "packages",
+            "extra": "mean: 5.0945 msec\nrounds: 126"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_mistune",
+            "value": 12.25793422970933,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0021984",
+            "group": "packages",
+            "extra": "mean: 81.580 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_pymarkdown",
+            "value": 7.459879728961903,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0013301",
+            "group": "packages",
+            "extra": "mean: 134.05 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_pymarkdown_extra",
+            "value": 5.538646266970592,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0027944",
+            "group": "packages",
+            "extra": "mean: 180.55 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_mistletoe",
+            "value": 7.255342245893646,
+            "unit": "iter/sec",
+            "range": "stddev: 0.011961",
+            "group": "packages",
+            "extra": "mean: 137.83 msec\nrounds: 20"
+          },
+          {
+            "name": "benchmarking/bench_packages.py::test_panflute",
+            "value": 1.4333041809582672,
+            "unit": "iter/sec",
+            "range": "stddev: 0.0078928",
+            "group": "packages",
+            "extra": "mean: 697.69 msec\nrounds: 20"
           }
         ]
       }
